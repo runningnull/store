@@ -1,7 +1,7 @@
-package com.store.lucky.model;
+package com.store.lucky.user.model;
 
 public class User {
-    private String uuid;
+    private Long uuid;
 
     private String userName;
 
@@ -9,12 +9,12 @@ public class User {
 
     private byte[] userPwd;
 
-    public String getUuid() {
+    public Long getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid == null ? null : uuid.trim();
+    public void setUuid(Long uuid) {
+        this.uuid = uuid;
     }
 
     public String getUserName() {

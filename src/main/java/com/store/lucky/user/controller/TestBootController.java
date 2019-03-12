@@ -1,4 +1,4 @@
-package com.store.lucky.controller;
+package com.store.lucky.user.controller;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;

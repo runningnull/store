@@ -1,15 +1,17 @@
-package com.store.lucky.dao;
+package com.store.lucky.user.dao;
 
-import com.store.lucky.model.User;
+import com.store.lucky.user.model.User;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface UserMapper {
-    int deleteByPrimaryKey(String uuid);
+    int deleteByPrimaryKey(Long uuid);
 
     int insert(User record);
 
     int insertSelective(User record);
 
-    User selectByPrimaryKey(String uuid);
+    User selectByPrimaryKey(Long uuid);
 
     int updateByPrimaryKeySelective(User record);
 

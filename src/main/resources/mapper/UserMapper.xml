@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.store.lucky.dao.UserMapper">
-  <resultMap id="BaseResultMap" type="com.store.lucky.model.User">
-    <id column="uuid" jdbcType="CHAR" property="uuid" />
+<mapper namespace="com.store.lucky.user.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.store.lucky.user.model.User">
+    <id column="uuid" jdbcType="BIGINT" property="uuid" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.store.lucky.model.User">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.store.lucky.user.model.User">
     <result column="user_pwd" jdbcType="VARBINARY" property="userPwd" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -15,25 +15,25 @@
   <sql id="Blob_Column_List">
     user_pwd
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from s_user
-    where uuid = #{uuid,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from s_user
-    where uuid = #{uuid,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.store.lucky.model.User">
+  <insert id="insert" parameterType="com.store.lucky.user.model.User">
     insert into s_user (uuid, user_name, remark, 
       user_pwd)
-    values (#{uuid,jdbcType=CHAR}, #{userName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+    values (#{uuid,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
       #{userPwd,jdbcType=VARBINARY})
   </insert>
-  <insert id="insertSelective" parameterType="com.store.lucky.model.User">
+  <insert id="insertSelective" parameterType="com.store.lucky.user.model.User">
     insert into s_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="uuid != null">
@@ -51,7 +51,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uuid != null">
-        #{uuid,jdbcType=CHAR},
+        #{uuid,jdbcType=BIGINT},
       </if>
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.store.lucky.model.User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.store.lucky.user.model.User">
     update s_user
     <set>
       <if test="userName != null">
@@ -77,19 +77,19 @@
         user_pwd = #{userPwd,jdbcType=VARBINARY},
       </if>
     </set>
-    where uuid = #{uuid,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.store.lucky.model.User">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.store.lucky.user.model.User">
     update s_user
     set user_name = #{userName,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       user_pwd = #{userPwd,jdbcType=VARBINARY}
-    where uuid = #{uuid,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.store.lucky.model.User">
+  <update id="updateByPrimaryKey" parameterType="com.store.lucky.user.model.User">
     update s_user
     set user_name = #{userName,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR}
-    where uuid = #{uuid,jdbcType=CHAR}
+    where uuid = #{uuid,jdbcType=BIGINT}
   </update>
 </mapper>
