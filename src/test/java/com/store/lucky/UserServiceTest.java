@@ -3,6 +3,7 @@ package com.store.lucky;
 import com.github.pagehelper.Page;
 import com.store.lucky.user.model.User;
 import com.store.lucky.user.service.UserService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +26,8 @@ public class UserServiceTest {
     @Autowired
     private UserService userService;
 
+    private static final String PWD = "123456";
+
     @Test
     public void checkNameAndPwd() {
         boolean result = userService.checkNameAndPwd("sdf", new byte[]{});
@@ -35,7 +38,7 @@ public class UserServiceTest {
     public void addUser() {
         User user = new User();
         user.setUserName("matt komo");
-        user.setUserPwd("66666".getBytes());
+        user.setUserPwd(DigestUtils.md5Hex(PWD).getBytes());
         boolean result = userService.addUser(user);
         Assert.assertThat(result, is(true));
     }
@@ -45,5 +48,10 @@ public class UserServiceTest {
         Page<User> users = userService.findByPage(1, 2);
         System.out.println("test" + users.getPages());
         System.out.println("test" + users.getPageSize());
+    }
+
+    @Test
+    public void tt() {
+        System.out.println(DigestUtils.md5Hex("123"));
     }
 }

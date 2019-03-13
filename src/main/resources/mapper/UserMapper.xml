@@ -10,11 +10,11 @@
         <result column="user_pwd" jdbcType="VARBINARY" property="userPwd"/>
     </resultMap>
     <sql id="Base_Column_List">
-    uuid, user_name, remark
-  </sql>
+      uuid, user_name, remark
+    </sql>
     <sql id="Blob_Column_List">
-    user_pwd
-  </sql>
+      user_pwd
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
         select
         <include refid="Base_Column_List"/>
