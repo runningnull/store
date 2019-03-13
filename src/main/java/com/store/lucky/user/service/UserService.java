@@ -1,6 +1,9 @@
 package com.store.lucky.user.service;
 
+import com.github.pagehelper.Page;
 import com.store.lucky.user.model.User;
+
+import java.util.List;
 
 /**
  * @author: linzj
@@ -34,5 +37,21 @@ public interface UserService {
      * @return
      */
     User fetchUserById(long id);
+
+    /**
+     * 获取所有用户信息
+     *
+     * @return
+     */
+    List<User> getAllUsers();
+
+    /**
+     * 分页获取用户信息
+     *
+     * @param page
+     * @param limit
+     * @return
+     */
+    Page<User> findByPage(int page, int limit);
 
 }

@@ -1,5 +1,6 @@
 package com.store.lucky;
 
+import com.github.pagehelper.Page;
 import com.store.lucky.user.model.User;
 import com.store.lucky.user.service.UserService;
 import org.junit.Assert;
@@ -33,9 +34,16 @@ public class UserServiceTest {
     @Test
     public void addUser() {
         User user = new User();
-        user.setUserName("tom1");
-        user.setUserPwd("2324".getBytes());
+        user.setUserName("matt komo");
+        user.setUserPwd("66666".getBytes());
         boolean result = userService.addUser(user);
         Assert.assertThat(result, is(true));
+    }
+
+    @Test
+    public void findByPage() {
+        Page<User> users = userService.findByPage(1, 2);
+        System.out.println("test" + users.getPages());
+        System.out.println("test" + users.getPageSize());
     }
 }
