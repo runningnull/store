@@ -2,9 +2,13 @@ package com.store.lucky.product.dao;
 
 import com.store.lucky.product.model.ProductDetail;
 import com.store.lucky.product.so.ProductDetailSO;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Mapper
+@Repository
 public interface ProductDetailMapper {
     int deleteByPrimaryKey(Long id);
 
