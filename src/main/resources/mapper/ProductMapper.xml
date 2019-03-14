@@ -13,6 +13,29 @@
   <sql id="Base_Column_List">
     uuid, create_time, update_time, product_name, product_code, remainder, sell_out
   </sql>
+  <sql id="SO_Where_Clause">
+    <if test="uuid != null">
+      and o.uuid=#{uuid},
+    </if>
+    <if test="createTime != null">
+      and o.create_time=#{createTime},
+    </if>
+    <if test="updateTime != null">
+      and o.update_time=#{updateTime},
+    </if>
+    <if test="productName != null">
+      and o.product_name=#{productName},
+    </if>
+    <if test="productCode != null">
+      and o.product_code=#{productCode},
+    </if>
+    <if test="remainder != null">
+      and o.remainder=#{remainder},
+    </if>
+    <if test="sellOut != null">
+      and o.sell_out=#{sellOut},
+    </if>
+  </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -114,4 +137,11 @@
       sell_out = #{sellOut,jdbcType=INTEGER}
     where uuid = #{uuid,jdbcType=BIGINT}
   </update>
+  <select id="selectUserBySO" resultMap="BaseResultMap" parameterType="com.store.lucky.product.so.ProductSO">
+    select
+    <include refid="Base_Column_List"/>
+    from s_product o
+    where 1=1
+    <include refid="SO_Where_Clause"/>
+  </select>
 </mapper>

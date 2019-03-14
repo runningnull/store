@@ -3,6 +3,7 @@ package com.store.lucky;
 import com.github.pagehelper.Page;
 import com.store.lucky.user.model.User;
 import com.store.lucky.user.service.UserService;
+import com.store.lucky.user.so.UserSO;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,6 +11,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 
@@ -28,6 +31,8 @@ public class UserServiceTest {
 
     private static final String PWD = "123456";
 
+    private byte[] password = DigestUtils.md5Hex(PWD).getBytes();
+
     @Test
     public void checkNameAndPwd() {
         boolean result = userService.checkNameAndPwd("sdf", new byte[]{});
@@ -38,7 +43,7 @@ public class UserServiceTest {
     public void addUser() {
         User user = new User();
         user.setUserName("matt komo");
-        user.setUserPwd(DigestUtils.md5Hex(PWD).getBytes());
+        user.setUserPwd(password);
         boolean result = userService.addUser(user);
         Assert.assertThat(result, is(true));
     }
@@ -48,6 +53,15 @@ public class UserServiceTest {
         Page<User> users = userService.findByPage(1, 2);
         System.out.println("test" + users.getPages());
         System.out.println("test" + users.getPageSize());
+    }
+
+    @Test
+    public void listUserBySO() {
+        UserSO so = new UserSO();
+//        so.setUserPwd(password);
+        so.setUserName("tom");
+        List<User> result = userService.listUserBySO(so);
+        System.out.println("test");
     }
 
     @Test

@@ -15,6 +15,26 @@
     <sql id="Blob_Column_List">
       user_pwd
     </sql>
+    <sql id="SO_Where_Clause">
+        <if test="uuid != null">
+            and o.uuid=#{uuid}
+        </if>
+        <if test="userName != null">
+            and o.user_name=#{userName}
+        </if>
+        <if test="userPwd != null">
+            and o.user_pwd=#{userPwd}
+        </if>
+        <if test="remark != null">
+            and o.remark=#{remark}
+        </if>
+        <if test="createTime != null">
+            and o.create_time=#{createTime}
+        </if>
+        <if test="updateTime != null">
+            and o.update_time=#{updateTime}
+        </if>
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
         select
         <include refid="Base_Column_List"/>
@@ -92,14 +112,16 @@
       remark = #{remark,jdbcType=VARCHAR}
     where uuid = #{uuid,jdbcType=BIGINT}
   </update>
-    <select id="selectAll" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from s_user
-    </select>
     <select id="findByPage" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from s_user
+    </select>
+    <select id="selectUserBySO" resultMap="BaseResultMap" parameterType="com.store.lucky.user.so.UserSO">
+        select
+        <include refid="Base_Column_List"/>
+        from s_user o
+        where 1=1
+        <include refid="SO_Where_Clause"/>
     </select>
 </mapper>

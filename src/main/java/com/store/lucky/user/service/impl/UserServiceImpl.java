@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.store.lucky.user.dao.UserMapper;
 import com.store.lucky.user.model.User;
 import com.store.lucky.user.service.UserService;
+import com.store.lucky.user.so.UserSO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,13 +39,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return userMapper.selectAll();
-    }
-
-    @Override
     public Page<User> findByPage(int page, int limit) {
         PageHelper.startPage(page, limit);
         return userMapper.findByPage();
+    }
+
+    @Override
+    public List<User> listUserBySO(UserSO so) {
+        return userMapper.selectUserBySO(so);
     }
 }

@@ -2,6 +2,7 @@ package com.store.lucky.user.service;
 
 import com.github.pagehelper.Page;
 import com.store.lucky.user.model.User;
+import com.store.lucky.user.so.UserSO;
 
 import java.util.List;
 
@@ -39,13 +40,6 @@ public interface UserService {
     User fetchUserById(long id);
 
     /**
-     * 获取所有用户信息
-     *
-     * @return
-     */
-    List<User> getAllUsers();
-
-    /**
      * 分页获取用户信息
      *
      * @param page
@@ -54,4 +48,11 @@ public interface UserService {
      */
     Page<User> findByPage(int page, int limit);
 
+    /**
+     * 根据so动态查询用户信息
+     *
+     * @param so
+     * @return
+     */
+    List<User> listUserBySO(UserSO so);
 }

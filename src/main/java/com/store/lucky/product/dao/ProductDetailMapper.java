@@ -1,6 +1,9 @@
 package com.store.lucky.product.dao;
 
 import com.store.lucky.product.model.ProductDetail;
+import com.store.lucky.product.so.ProductDetailSO;
+
+import java.util.List;
 
 public interface ProductDetailMapper {
     int deleteByPrimaryKey(Long id);
@@ -14,4 +17,12 @@ public interface ProductDetailMapper {
     int updateByPrimaryKeySelective(ProductDetail record);
 
     int updateByPrimaryKey(ProductDetail record);
+
+    /**
+     * 根据so查询产品明细信息
+     *
+     * @param so
+     * @return
+     */
+    List<ProductDetail> selectUserBySO(ProductDetailSO so);
 }
