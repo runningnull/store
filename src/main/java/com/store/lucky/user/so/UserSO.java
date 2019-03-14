@@ -1,5 +1,7 @@
 package com.store.lucky.user.so;
 
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -8,7 +10,9 @@ import java.util.Date;
  * time: 9:16
  * description: No Description
  */
-public class UserSO {
+public class UserSO implements Serializable  {
+    private static final long serialVersionUID = 1L;
+
     private Long uuid;
 
     private Date createTime;
@@ -77,5 +81,18 @@ public class UserSO {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    @Override
+    public String toString() {
+        return "UserSO{" +
+                "uuid=" + uuid +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", userName='" + userName + '\'' +
+                ", remark='" + remark + '\'' +
+                ", userPwd=" + Arrays.toString(userPwd) +
+                ", pwd='" + pwd + '\'' +
+                '}';
     }
 }
